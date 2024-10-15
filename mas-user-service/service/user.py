@@ -1,3 +1,4 @@
+from select import select
 from sqlalchemy.orm import Session
 from schema.user import UserBase
 from models.user import User
@@ -13,3 +14,7 @@ def register(db: Session, user: UserBase):
     print(user)
 
     return user
+
+def userlist(db: Session):
+    return db.query(User.mno, User.userid,
+                    User.name, User.regdate).all()
