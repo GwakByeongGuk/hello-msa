@@ -1,3 +1,4 @@
+from imp import reload
 from multiprocessing import Process
 
 import uvicorn
@@ -5,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes import user
+from service.database import create_tables
 
 app = FastAPI()
 
@@ -22,11 +24,6 @@ app.add_middleware(
 )
 app.include_router(user.router)
 
-def run_server(port):
-    uvicorn.run('main:app', port=port, reload=True)
-
 if __name__ == '__main__':
-    process1 = Process(target=run_server, args=(8000,))
-    process1.start()
-
-    process1.join()
+    create_tables()
+    uvicorn.run('main:app',port=8000, reload=True)

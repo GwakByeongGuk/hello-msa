@@ -19,11 +19,5 @@ app.add_middleware(
 )
 app.include_router(product.router)
 
-def run_server(port):
-    uvicorn.run('main:app', port=port, reload=True)
-
 if __name__ == '__main__':
-    process2 = Process(target=run_server, args=(8050,))
-    process2.start()
-
-    process2.join()
+    uvicorn.run('main:app',port=8050, reload=True)
