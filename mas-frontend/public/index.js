@@ -16,6 +16,11 @@ router.get('/users', function(req, res, next) {
   res.sendFile(__dirname + '/views/users.html')
 });
 
+router.get('/userlogin', function(req, res, next) {
+  res.sendFile(__dirname + '/views/userlogin.html')
+});
+
+
 
 router.get('/product', function(req, res, next) {
   res.sendFile(__dirname + '/views/product.html')
